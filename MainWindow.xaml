@@ -8,17 +8,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
+        
         <DockPanel DockPanel.Dock="Top">
             <Button x:Name="ButtonGo"
             DockPanel.Dock="Right"
             Click="ButtonGo_Click"
             Content="Go"
             />
-            <TextBox Name="addressBar"/>
+        
+            <ComboBox Name="visitedUrl"
+                
+                     Text="Historique"
+                     IsEditable="True"
+                     IsReadOnly="True"/>
+
+
+            <TextBox Name="addressBar" 
+                     />
         </DockPanel>
 
 
         <wv2:WebView2 Name="webView"
-                      Source="https://www.microsoft.com" />
+                      Source="https://www.microsoft.com"/>
     </DockPanel>
 </Window>

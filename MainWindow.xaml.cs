@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,19 @@ namespace navigateurWeb4A
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+    class VisitedUrl : ObservableCollection<string>
+    {
+     
+    }
     public partial class MainWindow : Window
     {
+        VisitedUrl l1 = new VisitedUrl();
         public MainWindow()
         {
             InitializeComponent();
+            visitedUrl.ItemsSource = l1; 
             webView.NavigationStarting += EnsureHttps;
         }
         void EnsureHttps(Object sender, CoreWebView2NavigationStartingEventArgs args)
@@ -46,6 +55,7 @@ namespace navigateurWeb4A
         {
             if (webView != null && webView.CoreWebView2 != null)
             {
+                l1.Add(addressBar.Text);
                 webView.CoreWebView2.Navigate(addressBar.Text);
             }
         }
