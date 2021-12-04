@@ -13,18 +13,17 @@
             <Button x:Name="ButtonGo"
             DockPanel.Dock="Right"
             Click="ButtonGo_Click"
-            Content="Go"
+            Content="Rechercher"
             />
         
-            <ComboBox Name="visitedUrl"
+            <ComboBox Name="url"
                 
-                     Text="Historique"
+                     Text="https://www.microsoft.com"
                      IsEditable="True"
-                     IsReadOnly="True"/>
-
-
-            <TextBox Name="addressBar" 
                      />
+
+
+            
         </DockPanel>
 
 

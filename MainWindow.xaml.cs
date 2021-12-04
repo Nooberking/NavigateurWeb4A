@@ -29,11 +29,11 @@ namespace navigateurWeb4A
     }
     public partial class MainWindow : Window
     {
-        VisitedUrl l1 = new VisitedUrl();
+        VisitedUrl visitedUrl = new VisitedUrl();
         public MainWindow()
         {
             InitializeComponent();
-            visitedUrl.ItemsSource = l1; 
+            url.ItemsSource = visitedUrl; 
             webView.NavigationStarting += EnsureHttps;
         }
         void EnsureHttps(Object sender, CoreWebView2NavigationStartingEventArgs args)
@@ -44,7 +44,7 @@ namespace navigateurWeb4A
                 webView.CoreWebView2.ExecuteScriptAsync($"alert('{uri} is not safe, try an https link')");
                 args.Cancel = true;
             }
-            else webView.CoreWebView2.ExecuteScriptAsync($"alert('{uri} is safe, please go on !')");
+            else visitedUrl.Add(args.Uri); 
         }
         private void WebView_NavigationStarting(object? sender, CoreWebView2NavigationStartingEventArgs e)
         {
@@ -55,8 +55,7 @@ namespace navigateurWeb4A
         {
             if (webView != null && webView.CoreWebView2 != null)
             {
-                l1.Add(addressBar.Text);
-                webView.CoreWebView2.Navigate(addressBar.Text);
+                webView.CoreWebView2.Navigate(url.Text);
             }
         }
     }
