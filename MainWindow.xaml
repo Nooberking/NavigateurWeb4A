@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:navigateurWeb4A"
-        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
         mc:Ignorable="d"
         Title="Navigateur Web" Height="600" Width="1200" MinHeight="450" MinWidth="900">
     <Window.Resources>
@@ -200,8 +200,9 @@
             Click="ButtonGo_Click"
             Content="Rechercher"
             />
-        
-            <ComboBox ItemsSource="{Binding VisitedUrls}"
+
+            <ComboBox DataContext="{Binding Model}"
+                     ItemsSource="{Binding VisitedUrls}"
                      IsEditable="True"
                      Text="{Binding CurrentUrl, UpdateSourceTrigger=PropertyChanged}"
                      />
