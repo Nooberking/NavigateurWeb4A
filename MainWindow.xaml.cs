@@ -1,22 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.Wpf;
 
 namespace navigateurWeb4A
 {
@@ -26,7 +9,7 @@ namespace navigateurWeb4A
     /// 
 
 
-   
+
 
     public partial class MainWindow : Window
     {
@@ -54,8 +37,8 @@ namespace navigateurWeb4A
 
         private void ButtonPin_Click(object sender, RoutedEventArgs e)
         {
-            var p = ((Button)sender).Tag;
-            _vm.ToPin(((int) p) -1) ;
+            var p = ((Button)sender).Tag; // pour obtenir la position du bouton = position de l'url
+            _vm.ToPin(((int)p) - 1);
         }
     }
     
