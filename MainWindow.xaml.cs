@@ -25,8 +25,6 @@ namespace navigateurWeb4A
         private void ButtonGo_Click(object sender, RoutedEventArgs e)
         {
            _vm.NavigateUrl(_vm.Model.CurrentUrl);
-           
-          
         }
 
         private void ButtonPrevious_Click(object sender, RoutedEventArgs e)
