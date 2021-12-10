@@ -35,21 +35,40 @@ namespace navigateurWeb4A
 
         public void RefreshUrl(object sender, CoreWebView2SourceChangedEventArgs args)
         {
-           if(Model.CurrentUrl != Model.WebView.Source.AbsoluteUri)
-            {   
-                Model.CurrentUrl = Model.WebView.Source.AbsoluteUri;
-                Model.VisitedUrls.Add(Model.CurrentUrl);
-                PropertyChanged(Model, new PropertyChangedEventArgs(nameof(Model.CurrentUrl))); 
+            
+            
+            if (Model.PrecedentClicked)
+            {
+                Model.PrecedentClicked = false;
+                Model.PlaceNavigation--;
+                Model.VisitedUrls.RemoveAt(Model.VisitedUrls.Count - 1);
+                PropertyChanged(Model, new PropertyChangedEventArgs(nameof(Model.VisitedUrls)));
+
             }
+            else 
+            {
+                Model.PlaceNavigation++;
+                
+                Model.VisitedUrls.Add(Model.WebView.Source.AbsoluteUri);
+            }
+            Model.CurrentUrl = Model.WebView.Source.AbsoluteUri;
+            PropertyChanged(Model, new PropertyChangedEventArgs(nameof(Model.CurrentUrl)));
+            Model.IsPrecedent = Model.PlaceNavigation > 1;
+            PropertyChanged(Model, new PropertyChangedEventArgs(nameof(Model.IsPrecedent)));
+            
+           
+
         }
 
 
-        public void NavigateUrl(string url) // permet de charger une page dans le contrôle WebView2 à partir d'une url
+        public void NavigateUrl(string url, bool precedent = false) // permet de charger une page dans le contrôle WebView2 à partir d'une url
         {
             if (Model.WebView != null)
             {
                 Model.CurrentUrl = url;
+                Model.PrecedentClicked = precedent;
                 Model.WebView.Source = new Uri(url);
+                
             }
         }
     }

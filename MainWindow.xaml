@@ -182,7 +182,7 @@
         
         <Style TargetType="Button">
             <Setter Property="Padding" Value="2"/>
-            <Setter Property="Margin" Value="0,10,4,0" />
+            <Setter Property="Margin" Value="5,10,4,0" />
             <Setter Property="BorderBrush" Value="DarkGreen" />
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="Background" Value="Chartreuse" />
@@ -193,22 +193,31 @@
         
     </Window.Resources>
     <DockPanel x:Name="dp">
-        
-        <DockPanel DockPanel.Dock="Top">
+
+        <DockPanel DockPanel.Dock="Top"
+                   HorizontalAlignment="Stretch">
+            
             <Button x:Name="ButtonGo"
             DockPanel.Dock="Right"
             Click="ButtonGo_Click"
-            Content="Rechercher"
-            />
+            Content="Rechercher"/>
+
+            <Button x:Name="ButtonPrevious"
+                    DataContext="{Binding Model}"
+                    
+                    DockPanel.Dock="Left"
+                    IsEnabled="{Binding IsPrecedent, UpdateSourceTrigger=PropertyChanged}"
+                    Click="ButtonPrevious_Click"
+               
+                    Content="Précédent" />
 
             <ComboBox DataContext="{Binding Model}"
-                     ItemsSource="{Binding VisitedUrls}"
-                     IsEditable="True"
-                     Text="{Binding CurrentUrl, UpdateSourceTrigger=PropertyChanged}"
-                     />
-
-
-            
+                      ItemsSource="{Binding VisitedUrls, UpdateSourceTrigger=PropertyChanged}"
+                      HorizontalAlignment="Stretch"
+                     
+                      IsEditable="True"
+                      Text="{Binding CurrentUrl, UpdateSourceTrigger=PropertyChanged}"
+                      />
         </DockPanel>
 
 
