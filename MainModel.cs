@@ -17,7 +17,7 @@ namespace navigateurWeb4A
         public string CurrentUrl { get; set; }  //ici, l'url de la page
 
         public int PlaceNavigation { get; set; } //Servira à connaitre la position de l'url actuel dans l'historique
-        public bool IsPrecedent { get; set; }   //Si l'url saisie vient de l'historique 
+        public bool IsPrecedent { get; set; }   //Si il y a suffisamment d'urls pour passer au précédents dans l'historique 
 
         public bool PrecedentClicked { get; set; }//si le bouton Précédent a été cliqué
 
