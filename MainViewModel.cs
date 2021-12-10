@@ -1,45 +1,30 @@
 ﻿using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace navigateurWeb4A
 {
 
-    public class MainViewModel: INotifyPropertyChanged
+    public class MainViewModel
 
     {
-       
-       
-
-        public MainModel Model { get; set; } = new MainModel();
-        
-       
-
+        public MainModel Model { get; set; } = new MainModel(); 
 
         public MainViewModel()
         {
-            
             NavigateUrl(Model.HOMEPAGE);
-            Model.WebView.SourceChanged += RefreshUrl; // On ajoute la méthode qui permet d'actualiser la liste des pages visitées dans l'évènement qui s'enclenche lorsqu'une page est chargée 
-            
-
+            Model.WebView.SourceChanged += RefreshUrl; // On ajoute la méthode qui permet d'actualiser la liste des pages visitées dans l'évènement qui s'enclenche lorsque la source d'une page change
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+       
 
         public void RefreshUrl(object sender, CoreWebView2SourceChangedEventArgs args)
+            //Méthode permettant d'actualiser la liste des pages visitées ainsi que l'actuel Url.
         {
            if(Model.CurrentUrl != Model.WebView.Source.AbsoluteUri)
             {   
                 Model.CurrentUrl = Model.WebView.Source.AbsoluteUri;
                 Model.VisitedUrls.Add(Model.CurrentUrl);
-                PropertyChanged(Model, new PropertyChangedEventArgs(nameof(Model.CurrentUrl))); 
+                Model.OnChange(nameof(Model.CurrentUrl)); 
             }
         }
 

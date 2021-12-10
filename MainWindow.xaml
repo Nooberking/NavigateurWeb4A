@@ -9,15 +9,15 @@
         Title="Navigateur Web" Height="600" Width="1200" MinHeight="450" MinWidth="900">
     <Window.Resources>
       
-        
+        <!-- Configuration de la barre de recherche en comboBox -->
         <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
             <Grid>
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Border
                   x:Name="Border" 
                   Grid.ColumnSpan="2"
@@ -25,7 +25,7 @@
                   Background="#FF3F3F3F"
                   BorderBrush="#FF97A0A5"
                   BorderThickness="1"/>
-                
+
                 <Border 
                   Grid.Column="0"
                   CornerRadius="0" 
@@ -33,7 +33,7 @@
                   Background="#FF3F3F3F" 
                   BorderBrush="#FF97A0A5"
                   BorderThickness="0,0,1,0"/>
-                
+
                 <Path 
                   x:Name="Arrow"
                   Grid.Column="1"     
@@ -41,10 +41,8 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"/>
-                
+
             </Grid>
-            
-           
         </ControlTemplate>
 
         <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
@@ -63,7 +61,6 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="5,10,5,0"/>
              
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBox">
@@ -170,16 +167,19 @@
             </Setter>
         </Style>
 
+        <!-- Configuration du fond du navigateur -->
         <Style TargetType="DockPanel" x:Name="fond">
             <Setter Property="Background" Value="#2BF4E0"/>
         </Style>
 
+        <!-- Configuration de la fenêtre WebView2-->
         <Style TargetType="wv2:WebView2">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="MinHeight" Value="450"/>
             <Setter Property="MinWidth" Value="800" />
         </Style>
         
+        <!-- Configuration de la template de base des boutons -->
         <Style TargetType="Button">
             <Setter Property="Padding" Value="2"/>
             <Setter Property="Margin" Value="0,10,4,0" />
