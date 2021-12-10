@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace navigateurWeb4A
 {
+    
 
     public class MainViewModel: INotifyPropertyChanged
 
@@ -49,8 +50,9 @@ namespace navigateurWeb4A
             {
                 Model.PlaceNavigation++;
                 
-                Model.VisitedUrls.Add(Model.WebView.Source.AbsoluteUri);
+                Model.VisitedUrls.Add(new VisitedUrl(Model.WebView.Source.AbsoluteUri));
             }
+            Model.VisitedUrls[Model.VisitedUrls.Count - 1].Position = Model.PlaceNavigation;
             Model.CurrentUrl = Model.WebView.Source.AbsoluteUri;
             PropertyChanged(Model, new PropertyChangedEventArgs(nameof(Model.CurrentUrl)));
             Model.IsPrecedent = Model.PlaceNavigation > 1;
@@ -59,7 +61,18 @@ namespace navigateurWeb4A
            
 
         }
-
+        public void ToPin (int position)
+        {
+            VisitedUrl target = Model.VisitedUrls[position];
+            if (target.NotPinned)
+            {
+                target.NotPinned = false;
+                target.ButtonContent = target.PINNED;
+                Model.VisitedUrls.RemoveAt(position); 
+                Model.VisitedUrls.Insert(0, target);
+            }
+            
+        }
 
         public void NavigateUrl(string url, bool precedent = false) // permet de charger une page dans le contrôle WebView2 à partir d'une url
         {

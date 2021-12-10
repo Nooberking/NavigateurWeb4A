@@ -4,13 +4,38 @@ using System.ComponentModel;
 
 namespace navigateurWeb4A
 {
+    public class VisitedUrl
+    {
+        public readonly string PINNED = "épinglé";
+        public readonly string NOTPINNED = "épingler";
+
+
+        public override string ToString()
+        {
+            return Url;
+        }
+        public string Url { get; set; }
+        public int Position { get; set; }
+        public string ButtonContent { get; set; }
+
+        public bool NotPinned { get; set; } = true;
+
+        public VisitedUrl (string Url)
+        {
+            this.Url = Url;
+            this.ButtonContent = NOTPINNED; 
+
+        }
+        
+    }
+
     public class MainModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string HOMEPAGE = "https://www.google.fr"; // ici, la page d'accueil 
 
-        public ObservableCollection<string> VisitedUrls { get; set; }
+        public ObservableCollection<VisitedUrl> VisitedUrls { get; set; }
 
         public WebView2 WebView{ get; } // définition du contrôle WebView2
 
@@ -23,7 +48,7 @@ namespace navigateurWeb4A
 
         public MainModel()
         {
-            VisitedUrls = new ObservableCollection<string>();
+            VisitedUrls = new ObservableCollection<VisitedUrl>();
             WebView = new WebView2();
             CurrentUrl = HOMEPAGE;
 

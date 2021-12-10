@@ -49,7 +49,13 @@ namespace navigateurWeb4A
 
         private void ButtonPrevious_Click(object sender, RoutedEventArgs e)
         {
-            _vm.NavigateUrl(_vm.Model.VisitedUrls[_vm.Model.VisitedUrls.Count - 2],true);
+            _vm.NavigateUrl(_vm.Model.VisitedUrls[_vm.Model.VisitedUrls.Count - 2].Url,true);
+        }
+
+        private void ButtonPin_Click(object sender, RoutedEventArgs e)
+        {
+            var p = ((Button)sender).Tag;
+            _vm.ToPin(((int) p) -1) ;
         }
     }
     

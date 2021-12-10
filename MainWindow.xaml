@@ -216,8 +216,26 @@
                       HorizontalAlignment="Stretch"
                      
                       IsEditable="True"
-                      Text="{Binding CurrentUrl, UpdateSourceTrigger=PropertyChanged}"
-                      />
+                      Text="{Binding CurrentUrl, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <DockPanel  HorizontalAlignment="Stretch" >
+                            <TextBlock Text="{Binding Url}" />
+                            <Button Margin=" 5,0,0,0" 
+                                    DockPanel.Dock="Right"
+                                    Tag="{Binding Position}"
+                                    Click="ButtonPin_Click"
+                                 
+                                    IsEnabled="{Binding NotPinned}"
+                                    Content="{Binding ButtonContent}" />
+
+
+                        </DockPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                
+            </ComboBox>
         </DockPanel>
 
 
